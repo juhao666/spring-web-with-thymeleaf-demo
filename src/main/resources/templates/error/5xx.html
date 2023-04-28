@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <div th:replace="~{common :: common-header}"></div>
+</head>
+
+<body>
+
+  <main>
+    <div class="container">
+
+      <section class="section error-500 min-vh-100 d-flex flex-column align-items-center justify-content-center">
+        <h1>500</h1>
+        <h2 th:text="${message}">The service is not available now, will come back soon...</h2>
+        <h2 th:text="${status}">The error details.</h2>
+        <a class="btn" th:href="@{/index}">Back to home</a>
+        <img th:src="@{/assets/img/not-found.svg}" class="img-fluid py-5" alt="Page Not Found">
+        <div class="credits">
+          Designed by <a th:href="@{/}">juhao666</a>
+        </div>
+      </section>
+
+    </div>
+  </main><!-- End #main -->
+
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+
+  <div th:replace="~{common :: common-script}"></div>
+
+</body>
+
+</html>

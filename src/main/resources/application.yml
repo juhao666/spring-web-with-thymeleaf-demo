@@ -1,0 +1,96 @@
+spring:
+  datasource:
+    druid:
+      url: jdbc:postgresql://localhost:5555/juhao666
+      username: postgres
+      password: erik1234
+      driver-class-name: org.postgresql.Driver
+
+      aop-patterns: com.juhao666.apilife.*
+      filters: stat, wall  #stat 监控sql  wall防护墙功能
+
+      stat-view-servlet:
+        enabled: true
+        url-pattern: /druid/*
+        login-username: admin
+        login-password: admin
+        reset-enable: true
+
+      web-stat-filter:
+        enabled: true
+        url-pattern: /*
+        session-stat-enable: true
+        exclusions: "*.js,*.gif,*.jpg,*.png,*.css,*.ico,/druid/*,/components/*"
+
+      filter:
+        stat:
+          enabled: true
+          log-slow-sql: true
+          slow-sql-millis: 1000
+        wall:
+          enabled: true
+          config:
+            drop-table-allow: false
+            delete-where-none-check: true
+
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 100MB
+
+  jdbc:
+    template:
+      query-timeout: 5
+  thymeleaf:
+    cache: false
+
+  devtools:
+    restart:
+      enabled: true
+  redis:
+    host: 127.0.01
+    port: 6379
+    database: 0
+    password: 123456
+    client-type: jedis
+
+  boot:
+    admin:
+      client:
+        url: http://localhost:8888 # 启动api-life-monitor监控  访问http://localhost:8888/
+        instance:
+          prefer-ip: true
+  application:
+    name: API life service
+
+#  application:
+#    message: Hello, Erik's application
+#
+#server:
+#  port: 8081
+
+mybatis:
+#  config-location: classpath:mybatis/mybatis-config.xml
+  mapper-locations: classpath:mybatis/mapper/*
+  configuration:
+    map-underscore-to-camel-case: true
+
+
+# actuator
+management:
+  endpoints:
+    enabled-by-default: true
+    web:
+      exposure:
+        include: '*' #web方式暴漏所有endpoints
+  endpoint:
+    health:
+      show-details: always
+    info:
+      enabled: true
+
+info:
+    appName: api-fix
+    appVersion: 1.0.0
+    mavenProjectName: @project.artifactId@
+    mavenProjectVersion: @project.version@

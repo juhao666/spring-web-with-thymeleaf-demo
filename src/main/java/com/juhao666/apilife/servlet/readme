@@ -1,0 +1,3 @@
+# 我们的系统里面有2个servlet
+## 1 DispatchServlet  Spring的
+## 1 AdminServlet  我们自定义的Tomcat servlet
